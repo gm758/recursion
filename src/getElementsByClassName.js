@@ -7,17 +7,16 @@
 var getElementsByClassName = function(className){
   // your code here
   var arr = [];
-  var dom = document.documentElement;
+  var body = document.body;
   var domTraversal = function(elem) {
-	if (elem.className && elem.className.split(" ").indexOf(className) !== -1) {
+	if (elem.classList && elem.classList.contains(className)) {
       arr.push(elem);
 	}
-	elem = elem.firstChild;
-    while(elem) {
-		domTraversal(elem);
-		elem = elem.nextSibling;
+	var children = elem.childNodes;
+    for (var i = 0; i < children.length; i++) {
+		domTraversal(children[i]);
 	  } 
   }
-  domTraversal(dom);
+  domTraversal(body);
   return arr;
 };
